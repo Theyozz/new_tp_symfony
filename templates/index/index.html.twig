@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<h1 class="mt-5 pt-5 text-center">Produits</h1>
+{# Liste des articles avec Twig #}
+{% for product in products %}
+    <div class="text-dark">
+        {% if product.discount and product.visible %}
+            <h3>{{product.name}}</h3>
+        {% endif %}
+    </div>
+{% endfor %}
+
+{% endblock %}

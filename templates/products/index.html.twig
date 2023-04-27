@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<h1 class="mt-5 pt-5 text-center">Tout les produits</h1>
+{# Liste des articles avec Twig #}
+{% for product in products %}
+        <div class="bg-dark text-dark p-5 m-4 rounded-4">
+            <a href="{{ path('product_item', {id : product.id}) }}">
+                <h4>{{product.name}}</h4>
+            </a>
+            <p>{{product.description}}</p>
+        </div>
+{% endfor %}
+
+{% endblock %}
