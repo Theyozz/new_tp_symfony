@@ -4,14 +4,14 @@
 
 {% block body %}
 
-<h1 class="mt-5 pt-5 text-center">Produits</h1>
+<h1 class="mt-5 pt-5 text-center">Produits en promo</h1>
 {# Liste des articles avec Twig #}
-{% for product in products %}
-    <div class="text-dark mb-3">
-        {% if product.discount and product.visible %}
-            <h3>{{product.name}}</h3>
-        {% endif %}
-    </div>
-{% endfor %}
+<div class="d-flex gap-5 mt-5 justify-content-center">
+    {# {% for product in products %}
+        <div class="text-dark bg-warning p-2 mb-3 rounded-4">
+            {{product.name}}
+        </div>
+    {% endfor %} #}
+</div>
 
 {% endblock %}

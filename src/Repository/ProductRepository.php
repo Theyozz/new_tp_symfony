@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Select;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,6 +20,24 @@ class ProductRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Product::class);
+    }
+
+    public function findHomepageProducts(): array
+    {
+        return $this
+            ->createQueryBuilder('p')
+            ->andWhere('p.visible = :visible')
+            ->andWhere('p.discount = :discount')
+            ->setParameter('visible',true)
+            ->setParameter('discount',true)
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult();
+        // return $this
+        // ->getEntityManager()
+        // ->createQuery("SELECT p FROM". Product::class . "p WHERE p.visible = 1 AND p.discount =1 ORDER BY p.price_taxes_free")
+        // ->setMaxResults(5)
+        // ->getResult();
     }
 
     public function save(Product $entity, bool $flush = false): void

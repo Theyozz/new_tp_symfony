@@ -12,9 +12,12 @@ class IndexController extends AbstractController
     #[Route('/', name: 'accueil')]
     public function index(ProductRepository $productRepository): Response
     {
-        $products = $productRepository->findAll();
+        $products = $productRepository->findHomepageProducts();
+        
+        dd($products);
+
         return $this->render('index/index.html.twig', [
-            'products' => $products,
+            'controller_name' => 'IndexController',
         ]);
     }
 }
